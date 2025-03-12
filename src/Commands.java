@@ -5,9 +5,13 @@ public class Commands{
 
     private boolean exit=false;
     private HashMap<String, Command> map = new HashMap<>();
+    Inventar inventar;
 
     public void inicialization(){
         map.put("jdi",new Pohyb());
+        map.put("batoh",new Inventar());
+        map.put("seber",new Sbirani(inventar));
+        map.put("boj",new Boj());
     }
 
     private Scanner sc=new Scanner(System.in);
@@ -20,15 +24,13 @@ public class Commands{
         if(map.containsKey(command)){
             System.out.println(">> "+map.get(command).execute());
         }else{
-            System.out.println(">> Nondefined command");
+            System.out.println(">> neznamy prikaz");
         }
     }
 
 
     public void start(){
         inicialization();
-        //String text = Text.loadFile();
-        //System.out.println(text);
         try{
             do{
                 doCommand();
