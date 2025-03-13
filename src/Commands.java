@@ -40,4 +40,9 @@ public class Commands{
         }
     }
 
+    public void game(){
+        inicialization();
+        System.out.println("vitej ve hre ESCAPE THE FOREST \n tvym ukolem je utect z lesa \n porad si po svem");
+    }
+
 }

@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +47,21 @@ public class MapaLesa {
             System.out.println(String.join(", ", unikatniLokace));
         } else {
             System.out.println("Nejsou dostupné žádné lokace.");
+        }
+    }
+
+    public void nactiItemy(){
+        try(BufferedReader br = new BufferedReader(new FileReader("itemy.txt"))){
+            String line;
+            while((line= br.readLine() != null)){
+                String[] lines = line.split("-");
+                String[] lokace=lines[0];
+                String[] itemy=lines[1];
+            }
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

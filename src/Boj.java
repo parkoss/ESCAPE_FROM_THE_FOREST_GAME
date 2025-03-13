@@ -27,10 +27,6 @@ public class Boj implements Command{
             if (hraczivoty>=0){
                 System.out.println("jses mrtvy");
             }
-
-
-
-
         }
 
 
