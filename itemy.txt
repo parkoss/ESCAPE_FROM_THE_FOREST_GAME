@@ -1,7 +1,7 @@
 jeskyne-botyDoBaziny
-hlubokyLes-truhla
+hlubokyLes-klicKChatrci
 opustenyOltar-mapaKChramu
-opustenyKemp-klic
+opustenyKemp-klicKTruhle
 bazina-kouzelnyPrsten
 chatrc-elfiHulka
 jezero-lampa

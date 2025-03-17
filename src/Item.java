@@ -7,8 +7,10 @@ public class Item{
 
 
 
-    public Item(String nazev) {
+
+    public Item(String nazev,ArrayList<String>itemy) {
         this.nazev = nazev;
+        this.itemy=itemy;
     }
 
     public String getNazev() {

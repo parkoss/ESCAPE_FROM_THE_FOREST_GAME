@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +7,8 @@ public class MapaLesa {
     private ArrayList<String> povolenyLokace=new java.util.ArrayList<>();
     private ArrayList<Lokace>vsechnyLokace=new ArrayList<>();
     private String momentalniLokace="startovniKemp";
+    private ArrayList<String>itemyVLokaci;
+    ArrayList<String>sousedniLokace;
     Lokace lokace;
 
     public boolean nactiMapu(){
@@ -15,18 +16,25 @@ public class MapaLesa {
             String line;
             while((line=br.readLine())!=null) {
                 String[] lines = line.split("-");
+
                 String nazevLokace =lines[0];
-                for (int i = 0; i < lines.length; i++) {
-                    povolenyLokace.add(lines[i]);
+                String potrebnyItem = (lines.length > 1)? lines[1] : "nane";
+
+
+                sousedniLokace=new ArrayList<>();
+
+
+                for (int i = 2; i < lines.length; i++) {
+                    sousedniLokace.add(lines[i]);
                 }
-                lokace=new Lokace(lines[0],povolenyLokace);
+                lokace=new Lokace(nazevLokace,potrebnyItem,sousedniLokace);
                 vsechnyLokace.add(lokace);
             }
             return true;
-
         }catch (IOException e){
             return false;
         }
+
     }
     public void zobrazMozneLokace() {
         ArrayList<String> unikatniLokace = new ArrayList<>();
@@ -50,20 +58,62 @@ public class MapaLesa {
         }
     }
 
-    public void nactiItemy(){
-        try(BufferedReader br = new BufferedReader(new FileReader("itemy.txt"))){
+
+    public String nactiItemy(){
+        try (BufferedReader br = new BufferedReader(new FileReader("itemy.txt"))) {
             String line;
-            while((line= br.readLine() != null)){
+            String nazevLokace;
+            String item = null;
+            while ((line = br.readLine()) != null) {
                 String[] lines = line.split("-");
-                String[] lokace=lines[0];
-                String[] itemy=lines[1];
+
+                nazevLokace = lines[0];
+                item = lines[1];
+
+                itemyVLokaci=new ArrayList<>();
+
+                for (int i = 1; i < lines.length; i++) {
+                    itemyVLokaci.add(lines[i]);
+                }
+
+                for (Lokace lokace : vsechnyLokace) {
+                    if (lokace.getNazev().equals(nazevLokace)) {
+                        lokace.pridejItem(item);
+                        break;
+                    }
+                }
+
             }
-
-
+            return item;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return null;
         }
     }
+
+    public void zobrazItemyVaktualniLokaci() {
+        for (Lokace lokace : vsechnyLokace) {
+            if (lokace.getNazev().equals(momentalniLokace)) {
+                ArrayList<String> itemy = lokace.getItemy();
+                System.out.println(itemy);
+                if (!itemy.isEmpty()) {
+                    System.out.println("V této lokaci můžeš najít: " + String.join(", ", itemy));
+                } else {
+                    System.out.println("V této lokaci nejsou žádné předměty.");
+                }
+                return;
+            }
+        }
+    }
+
+    public void odeberItemZLokace(String itemNazev) {
+        for (Lokace lokace : vsechnyLokace) {
+            if (lokace.getNazev().equals(momentalniLokace)) {
+                lokace.getItemy().remove(itemNazev);
+                break;
+            }
+        }
+    }
+
 
 
     public String getMomentalniLokace() {
@@ -81,5 +131,7 @@ public class MapaLesa {
     public ArrayList<Lokace> getVsechnyLokace() {
         return vsechnyLokace;
     }
+
+
 
 }

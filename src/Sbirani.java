@@ -1,19 +1,28 @@
-public class Sbirani implements Command{
+import java.util.Scanner;
+
+public class Sbirani implements Command {
 
     Item item;
     Inventar inventar;
+    MapaLesa mapaLesa;
+    Lokace lokace;
 
-    public Sbirani(Inventar inventar) {
+    Scanner sc =new Scanner(System.in);
+    public Sbirani(Inventar inventar, MapaLesa mapaLesa,Lokace lokace) {
         this.inventar = inventar;
+        this.mapaLesa = mapaLesa;
+        this.lokace=lokace;
     }
 
     @Override
     public String execute() {
-        if (item != null) {
-            inventar.pridejItem(item);
-            return "Sebral jsi: " + item.getNazev();
-        }
-        return "Není co sebrat.";
+        String item=mapaLesa.nactiItemy();
+        inventar.pridejItem(item);
+
+
+
+        return "item byl pridan";
+
     }
 
     @Override

@@ -1,11 +1,11 @@
-startovniKemp-opustenyKemp-hlubokyLes-chatrc-jezero-bazina-opustenyOltar-jeskyne-chram
-jeskyne-startovniKemp-hlubokyLes
-hlubokyLes-startovniKemp-jeskyne-opustenyOltar
-opustenyOltar-startovniKemp-hlubokyLes
-opustenyKemp-startovniKemp-bazina
-bazina-startovniKemp-opustenyKemp-chatrc
-chatrc-startovniKemp-bazina-jezero
-jezero-startovniKemp-chatrc
-chram-startovniKemp-brana
-brana-chram
+startovniKemp-nane-opustenyKemp-hlubokyLes-chatrc-jezero-bazina-opustenyOltar-jeskyne-chram
+jeskyne-lampa-startovniKemp-hlubokyLes
+hlubokyLes-klicKTruhle-startovniKemp-jeskyne-opustenyOltar
+opustenyOltar-kouzelnyPrsten-startovniKemp-hlubokyLes
+opustenyKemp-nane-startovniKemp-bazina
+bazina-botyDoBaziny-startovniKemp-opustenyKemp-chatrc
+chatrc-klicKChatrci-startovniKemp-bazina-jezero
+jezero-nane-startovniKemp-chatrc
+chram-elfiHulka-startovniKemp-brana
+brana-nane-chram
 

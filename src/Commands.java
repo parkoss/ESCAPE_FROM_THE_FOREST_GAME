@@ -1,16 +1,17 @@
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Commands{
 
     private boolean exit=false;
     private HashMap<String, Command> map = new HashMap<>();
-    Inventar inventar;
+    public void inicialization(MapaLesa mapaLesa,Inventar inventar,Lokace lokace){
 
-    public void inicialization(){
-        map.put("jdi",new Pohyb());
+
+        map.put("jdi",new Pohyb(inventar, mapaLesa));
         map.put("batoh",new Inventar());
-        map.put("seber",new Sbirani(inventar));
+        map.put("seber",new Sbirani(inventar,mapaLesa,lokace));
         map.put("boj",new Boj());
     }
 
@@ -29,8 +30,8 @@ public class Commands{
     }
 
 
-    public void start(){
-        inicialization();
+    public void start(MapaLesa mapaLesa,Inventar inventar,Lokace lokace){
+        inicialization(mapaLesa, inventar,lokace);
         try{
             do{
                 doCommand();
@@ -40,9 +41,6 @@ public class Commands{
         }
     }
 
-    public void game(){
-        inicialization();
-        System.out.println("vitej ve hre ESCAPE THE FOREST \n tvym ukolem je utect z lesa \n porad si po svem");
-    }
+
 
 }

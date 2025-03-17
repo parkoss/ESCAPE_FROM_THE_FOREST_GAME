@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Inventar implements Command{
 
-    private ArrayList<Item> batoh = new ArrayList<>();
+    private ArrayList<String> batoh = new ArrayList<>();
     private Scanner sc = new Scanner(System.in);
 
 
@@ -14,9 +14,8 @@ public class Inventar implements Command{
 
         }
             String obsahBatohu="V batohu mas: \n";
-            for (Item item:batoh){
-                obsahBatohu += "- " + item.getNazev() + "\n";
-            }
+        System.out.println(toString());
+
 
         return obsahBatohu;
     }
@@ -27,7 +26,7 @@ public class Inventar implements Command{
     }
 
 
-    public boolean pridejItem(Item item){
+    public boolean pridejItem(String item){
         if(item != null){
             batoh.add(item);
             return true;
@@ -37,11 +36,22 @@ public class Inventar implements Command{
 
     public boolean odeberItem(Item item){
         for (int i = 0; i < batoh.size(); i++) {
-            if(item == batoh.get(i)){
+            if(item.equals(batoh.get(i))){
                 batoh.remove(i);
                 return true;
             }
         }
         return false;
+    }
+
+    public ArrayList<String> getBatoh() {
+        return batoh;
+    }
+
+    @Override
+    public String toString() {
+
+        return "\n" +
+                "-batoh=" + batoh;
     }
 }
