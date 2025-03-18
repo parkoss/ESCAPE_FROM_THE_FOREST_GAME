@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 public class Sbirani implements Command {
 
     Item item;
@@ -16,17 +16,37 @@ public class Sbirani implements Command {
 
     @Override
     public String execute() {
-        String item=mapaLesa.nactiItemy();
-        inventar.pridejItem(item);
+        /*String item=mapaLesa.nactiItemy();
+        if (item!=null){
+            inventar.pridejItem(item);
+            return "item "+item+" byl pridan";
+        }
+        return "nemuzes nic sebrat";
 
+         */
 
+        ArrayList<String> dostupneItemy = mapaLesa.getItemyVAktualniLokaci();
+        if (dostupneItemy.isEmpty()) {
+            return "V této lokaci není žádný předmět.";
+        }
 
-        return "item byl pridan";
+        System.out.println("Můžeš sebrat: " + String.join(", ", dostupneItemy));
+        System.out.print("Co chceš sebrat? > ");
+        String input = sc.nextLine().trim();
 
+        if (dostupneItemy.contains(input)) {
+            inventar.pridejItem(input);
+            mapaLesa.odeberItemZLokace(input);
+            return "Sebral jsi " + input;
+        }
+        return "Tento předmět zde není.";
     }
+
 
     @Override
     public Boolean exit() {
         return null;
     }
+
+
 }

@@ -44,4 +44,6 @@ public class Lokace {
     public String toString() {
         return "lokaci: " + nazev;
     }
+
+
 }

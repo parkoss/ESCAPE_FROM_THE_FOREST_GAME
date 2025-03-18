@@ -9,20 +9,22 @@ public class Inventar implements Command{
 
     @Override
     public String execute() {
-        if (batoh.isEmpty()){
-            return "nic v batohu nemas";
+        return vypisBatoh();
 
-        }
-            String obsahBatohu="V batohu mas: \n";
-        System.out.println(toString());
-
-
-        return obsahBatohu;
     }
 
     @Override
     public Boolean exit() {
         return null;
+    }
+
+
+    public String vypisBatoh(){
+        if (batoh.isEmpty()){
+            return "nic v batohu nemas";
+
+        }
+        return "v batohu mas: " + String.join(", ",batoh);
     }
 
 

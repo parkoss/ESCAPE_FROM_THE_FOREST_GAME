@@ -62,24 +62,26 @@ public class MapaLesa {
     public String nactiItemy(){
         try (BufferedReader br = new BufferedReader(new FileReader("itemy.txt"))) {
             String line;
-            String nazevLokace;
             String item = null;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split("-");
 
-                nazevLokace = lines[0];
-                item = lines[1];
+                String nazevLokace = lines[0];
+                //item = lines[1];
 
                 itemyVLokaci=new ArrayList<>();
 
-                for (int i = 1; i < lines.length; i++) {
+                /*for (int i = 1; i < lines.length; i++) {
                     itemyVLokaci.add(lines[i]);
                 }
 
+                 */
+
                 for (Lokace lokace : vsechnyLokace) {
                     if (lokace.getNazev().equals(nazevLokace)) {
-                        lokace.pridejItem(item);
-                        break;
+                        for (int i = 1; i < lines.length; i++) {
+                            lokace.pridejItem(lines[i]);
+                        }
                     }
                 }
 
@@ -94,7 +96,6 @@ public class MapaLesa {
         for (Lokace lokace : vsechnyLokace) {
             if (lokace.getNazev().equals(momentalniLokace)) {
                 ArrayList<String> itemy = lokace.getItemy();
-                System.out.println(itemy);
                 if (!itemy.isEmpty()) {
                     System.out.println("V této lokaci můžeš najít: " + String.join(", ", itemy));
                 } else {
@@ -103,6 +104,15 @@ public class MapaLesa {
                 return;
             }
         }
+    }
+
+    public ArrayList<String> getItemyVAktualniLokaci() {
+        for (Lokace lokace : vsechnyLokace) {
+            if (lokace.getNazev().equals(momentalniLokace)) {
+                return lokace.getItemy();
+            }
+        }
+        return new ArrayList<>();
     }
 
     public void odeberItemZLokace(String itemNazev) {
@@ -131,6 +141,8 @@ public class MapaLesa {
     public ArrayList<Lokace> getVsechnyLokace() {
         return vsechnyLokace;
     }
+
+
 
 
 

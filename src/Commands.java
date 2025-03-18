@@ -10,23 +10,32 @@ public class Commands{
 
 
         map.put("jdi",new Pohyb(inventar, mapaLesa));
-        map.put("batoh",new Inventar());
+        map.put("batoh",inventar);
         map.put("seber",new Sbirani(inventar,mapaLesa,lokace));
         map.put("boj",new Boj());
+        map.put("pomoc",new Pomoc());
     }
 
     private Scanner sc=new Scanner(System.in);
 
     public void doCommand(){
-        System.out.print(">>");
-        String command = sc.nextLine();
-        command = command.trim();
-        command = command.toLowerCase();
-        if(map.containsKey(command)){
-            System.out.println(">> "+map.get(command).execute());
-        }else{
-            System.out.println(">> neznamy prikaz");
+        System.out.println("---------------------------------");
+        System.out.println("vitej ve hre ESCAPE THE FOREST");
+        System.out.println("---------------------------------");
+        System.out.println("pro pomoc s commandama napis: pomoc");
+        System.out.println("---------------------------------");
+        while(true){
+            System.out.print(">>");
+            String command = sc.nextLine();
+            command = command.trim();
+            command = command.toLowerCase();
+            if(map.containsKey(command)){
+                System.out.println(">> "+map.get(command).execute());
+            }else{
+                System.out.println(">> neznamy prikaz");
+            }
         }
+
     }
 
 

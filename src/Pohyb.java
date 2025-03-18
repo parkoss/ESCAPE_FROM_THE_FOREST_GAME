@@ -48,11 +48,15 @@ public class Pohyb implements Command{
                     return "Jsi nyní v " + input;
                 }
             }
+
         }
+            System.out.println("Tato cesta není možná, protoze nemas: " + aktualniLokace.getPotrebnyItem());
 
-
-            System.out.println("Tato cesta není možná.");
             return "Zůstal jsi v " + aktualniLokace;
+
+
+
+
     }
 
 
