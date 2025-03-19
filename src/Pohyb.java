@@ -6,6 +6,7 @@ public class Pohyb implements Command{
     Scanner sc=new Scanner(System.in);
 
     Inventar inventar;
+    Hrac hrac;
     public Pohyb(Inventar inventar, MapaLesa mapaLesa) {
         mapaLesa.nactiMapu();
         mapaLesa.nactiItemy();
@@ -18,11 +19,13 @@ public class Pohyb implements Command{
     @Override
     public String execute() {
         mapaLesa.zobrazMozneLokace();
-        System.out.println("kam chces jit?");
+        System.out.println("Kam chceš jít?");
         System.out.print("> ");
         String input = sc.nextLine();
 
-        Lokace aktualniLokace = null;
+        Lokace aktualniLokace=null;
+
+
 
         for (Lokace l : mapaLesa.getVsechnyLokace()) {
             if (l.getNazev().equals(mapaLesa.getMomentalniLokace())) {
@@ -31,28 +34,46 @@ public class Pohyb implements Command{
             }
         }
 
-        if (inventar.getBatoh().contains(aktualniLokace.getPotrebnyItem())||aktualniLokace.getPotrebnyItem().equals("nane")){
-
 
             if (aktualniLokace == null) {
-                System.out.println("chyba");
-                return "zustal jsi na miste";
+                System.out.println("Chyba");
+                return "Zůstal jsi na miste";
             }
 
             for (Lokace lokace : mapaLesa.getVsechnyLokace()) {
                 if (aktualniLokace.getPovolenyLokace().contains(input)) {
+
+                    String potrebnyItem = mapaLesa.najdiLokaci(input).getPotrebnyItem();
+                    String finalniLokace = null;
+
+                    if (!potrebnyItem.equals("null") && !inventar.getBatoh().contains(potrebnyItem)) {
+                        System.out.println("Pro vstup do lokace '" + input + "' potřebuješ: " + potrebnyItem);
+                        return "Nemáš požadovaný předmět.";
+                    }
+
+
                     mapaLesa.setMomentalniLokace(input);
                     System.out.println("Přesunul jsi se do lokace: " + input);
                     mapaLesa.zobrazMozneLokace();
                     mapaLesa.zobrazItemyVaktualniLokaci();
-                    return "Jsi nyní v " + input;
+                    if (hrac != null) {
+                        hrac.vstupDoBrany();
+                        if (finalniLokace.equals("brana")) {
+                            System.out.println("gratuluji, vyhral jsi hru");
+                        }
+                        break;
+                    }
+
+
+
+                        return "Jsi nyní v " + input;
+
                 }
             }
 
-        }
-            System.out.println("Tato cesta není možná, protoze nemas: " + aktualniLokace.getPotrebnyItem());
 
-            return "Zůstal jsi v " + aktualniLokace;
+
+            return "Zůstal jsi v " + mapaLesa.getMomentalniLokace();
 
 
 

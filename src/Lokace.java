@@ -8,11 +8,15 @@ public class Lokace {
 
 
 
+
     public Lokace(String nazev,String potrebnyItem,ArrayList<String> povolenyLokace) {
         this.nazev = nazev;
+        this.potrebnyItem=potrebnyItem;
         this.povolenyLokace = povolenyLokace;
 
+
     }
+
 
     public Lokace(){}
 
@@ -29,15 +33,17 @@ public class Lokace {
     }
 
     public String getPotrebnyItem() {
-        return (potrebnyItem != null) ? potrebnyItem : "nane";
+        return potrebnyItem;
     }
 
-    public void setPotrebnyItem(String potrebnyItem) {
-        this.potrebnyItem = potrebnyItem;
-    }
 
     public void pridejItem(String item) {
         itemy.add(item);
+    }
+
+
+    public void setNazev(String nazev) {
+        this.nazev = nazev;
     }
 
     @Override

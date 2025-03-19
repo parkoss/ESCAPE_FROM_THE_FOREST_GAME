@@ -6,6 +6,7 @@ public class Sbirani implements Command {
     Inventar inventar;
     MapaLesa mapaLesa;
     Lokace lokace;
+    Hrac hrac;
 
     Scanner sc =new Scanner(System.in);
     public Sbirani(Inventar inventar, MapaLesa mapaLesa,Lokace lokace) {
@@ -16,15 +17,6 @@ public class Sbirani implements Command {
 
     @Override
     public String execute() {
-        /*String item=mapaLesa.nactiItemy();
-        if (item!=null){
-            inventar.pridejItem(item);
-            return "item "+item+" byl pridan";
-        }
-        return "nemuzes nic sebrat";
-
-         */
-
         ArrayList<String> dostupneItemy = mapaLesa.getItemyVAktualniLokaci();
         if (dostupneItemy.isEmpty()) {
             return "V této lokaci není žádný předmět.";
@@ -37,6 +29,7 @@ public class Sbirani implements Command {
         if (dostupneItemy.contains(input)) {
             inventar.pridejItem(input);
             mapaLesa.odeberItemZLokace(input);
+            hrac.vstupDoBrany();
             return "Sebral jsi " + input;
         }
         return "Tento předmět zde není.";

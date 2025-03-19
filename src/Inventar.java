@@ -21,10 +21,10 @@ public class Inventar implements Command{
 
     public String vypisBatoh(){
         if (batoh.isEmpty()){
-            return "nic v batohu nemas";
+            return "Nic v batohu nemáš";
 
         }
-        return "v batohu mas: " + String.join(", ",batoh);
+        return "V batohu máš: " + String.join(", ",batoh);
     }
 
 
@@ -36,15 +36,9 @@ public class Inventar implements Command{
         return false;
     }
 
-    public boolean odeberItem(Item item){
-        for (int i = 0; i < batoh.size(); i++) {
-            if(item.equals(batoh.get(i))){
-                batoh.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
+
+
+
 
     public ArrayList<String> getBatoh() {
         return batoh;
