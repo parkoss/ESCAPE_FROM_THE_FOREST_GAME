@@ -6,12 +6,12 @@ public class Commands{
 
     private boolean exit=false;
     private HashMap<String, Command> map = new HashMap<>();
-    public void inicialization(MapaLesa mapaLesa,Inventar inventar,Lokace lokace){
+    public void inicialization(MapaLesa mapaLesa,Inventar inventar,Lokace lokace,Hrac hrac){
 
 
         map.put("jdi",new Pohyb(inventar, mapaLesa));
         map.put("batoh",inventar);
-        map.put("seber",new Sbirani(inventar,mapaLesa,lokace));
+        map.put("seber",new Sbirani(inventar,mapaLesa,lokace,hrac));
         map.put("boj",new Boj());
         map.put("pomoc",new Pomoc());
     }
@@ -39,8 +39,8 @@ public class Commands{
     }
 
 
-    public void start(MapaLesa mapaLesa,Inventar inventar,Lokace lokace){
-        inicialization(mapaLesa, inventar,lokace);
+    public void start(MapaLesa mapaLesa,Hrac hrac,Lokace lokace){
+        inicialization(mapaLesa,hrac.inventar,lokace,hrac);
         try{
             do{
                 doCommand();

@@ -8,6 +8,7 @@ public class Hrac {
     public Hrac(int zivoty, int sila) {
         this.zivoty = zivoty;
         this.sila = sila;
+        this.inventar=new Inventar();
     }
 
 
@@ -17,6 +18,8 @@ public class Hrac {
             inventar.pridejItem("vylepsenaMapaKChramu");
         }
     }
+
+
 
     public void test(){
         inventar.pridejItem("elfiHulka");

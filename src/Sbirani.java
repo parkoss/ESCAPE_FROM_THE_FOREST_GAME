@@ -9,10 +9,11 @@ public class Sbirani implements Command {
     Hrac hrac;
 
     Scanner sc =new Scanner(System.in);
-    public Sbirani(Inventar inventar, MapaLesa mapaLesa,Lokace lokace) {
+    public Sbirani(Inventar inventar, MapaLesa mapaLesa,Lokace lokace,Hrac hrac) {
         this.inventar = inventar;
         this.mapaLesa = mapaLesa;
         this.lokace=lokace;
+        this.hrac=hrac;
     }
 
     @Override

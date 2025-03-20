@@ -56,12 +56,19 @@ public class Pohyb implements Command{
                     System.out.println("Přesunul jsi se do lokace: " + input);
                     mapaLesa.zobrazMozneLokace();
                     mapaLesa.zobrazItemyVaktualniLokaci();
-                    if (hrac != null) {
+                    /*if (hrac != null) {
                         hrac.vstupDoBrany();
                         if (finalniLokace.equals("brana")) {
                             System.out.println("gratuluji, vyhral jsi hru");
                         }
                         break;
+                    }
+
+                     */
+
+                    if (aktualniLokace.getNazev().equals("brana")){
+                        System.out.println("konec hry");
+                        System.exit(0);
                     }
 
 
