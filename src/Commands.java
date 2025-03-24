@@ -9,11 +9,11 @@ public class Commands{
     public void inicialization(MapaLesa mapaLesa,Inventar inventar,Lokace lokace,Hrac hrac){
 
 
-        map.put("jdi",new Pohyb(inventar, mapaLesa));
+        map.put("jdi",new Pohyb(inventar, mapaLesa,hrac));
         map.put("batoh",inventar);
         map.put("seber",new Sbirani(inventar,mapaLesa,lokace,hrac));
-        map.put("boj",new Boj());
         map.put("pomoc",new Pomoc());
+        map.put("staty",new Staty(hrac));
     }
 
     private Scanner sc=new Scanner(System.in);

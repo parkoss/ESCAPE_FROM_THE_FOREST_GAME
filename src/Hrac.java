@@ -1,8 +1,6 @@
 public class Hrac {
     private int zivoty;
     private int sila;
-    private int endGameItemy;
-    private boolean maObaItemy=false;
     Inventar inventar;
 
     public Hrac(int zivoty, int sila) {
@@ -21,17 +19,27 @@ public class Hrac {
 
 
 
-    public void test(){
-        inventar.pridejItem("elfiHulka");
-        inventar.pridejItem("mapaKChramu");
+    public void utok(Nepritel nepritel) {
+        nepritel.setZivoty(nepritel.getZivoty() - this.sila);
+        System.out.println("Útočíš na nepřítele! Zbylé životy nepřítele: " + nepritel.getZivoty());
+    }
+
+    public void obrana(int utokNepritele) {
+        this.zivoty -= utokNepritele;
+        System.out.println("Byl jsi zasažen! Zbylé životy: " + this.zivoty);
+    }
+
+    public void vylepsiStaty(Item item) {
+        this.sila += item.getUtok();
+        this.zivoty+= item.getObrana();
     }
 
     public int getZivoty() {
-        return 50;
+        return zivoty;
     }
 
     public int getSila() {
-        return 10;
+        return sila;
     }
 
     public void setSila(int sila) {

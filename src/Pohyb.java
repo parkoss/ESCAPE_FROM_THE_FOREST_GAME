@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Pohyb implements Command{
@@ -7,11 +8,14 @@ public class Pohyb implements Command{
 
     Inventar inventar;
     Hrac hrac;
-    public Pohyb(Inventar inventar, MapaLesa mapaLesa) {
+    private Random rd=new Random();
+    public Pohyb(Inventar inventar, MapaLesa mapaLesa,Hrac hrac) {
         mapaLesa.nactiMapu();
         mapaLesa.nactiItemy();
         this.inventar=inventar;
         this.mapaLesa=mapaLesa;
+        this.hrac=hrac;
+
     }
 
 
@@ -44,7 +48,6 @@ public class Pohyb implements Command{
                 if (aktualniLokace.getPovolenyLokace().contains(input)) {
 
                     String potrebnyItem = mapaLesa.najdiLokaci(input).getPotrebnyItem();
-                    String finalniLokace = null;
 
                     if (!potrebnyItem.equals("null") && !inventar.getBatoh().contains(potrebnyItem)) {
                         System.out.println("Pro vstup do lokace '" + input + "' potřebuješ: " + potrebnyItem);
@@ -52,19 +55,25 @@ public class Pohyb implements Command{
                     }
 
 
+
+                    int sance= rd.nextInt(100);
+                    if (sance<30){
+                        System.out.println("narazil jsi na nepřítele!");
+                        Boj boj=new Boj(hrac);
+                        boj.execute();
+                    } else if (sance<90) {
+                        System.out.println("narazil jsi na truhlu");
+                        Truhla truhla=new Truhla();
+                        truhla.najdiPredmet(hrac);
+                    }
+
+
                     mapaLesa.setMomentalniLokace(input);
                     System.out.println("Přesunul jsi se do lokace: " + input);
                     mapaLesa.zobrazMozneLokace();
                     mapaLesa.zobrazItemyVaktualniLokaci();
-                    /*if (hrac != null) {
-                        hrac.vstupDoBrany();
-                        if (finalniLokace.equals("brana")) {
-                            System.out.println("gratuluji, vyhral jsi hru");
-                        }
-                        break;
-                    }
 
-                     */
+
 
                     if (aktualniLokace.getNazev().equals("brana")){
                         System.out.println("konec hry");

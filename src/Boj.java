@@ -1,37 +1,48 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Boj implements Command{
     Hrac hrac;
-    private int nepritelZivoty;
-    private int nepritelSila;
     Random rd = new Random();
+    Scanner sc =new Scanner(System.in);
+
+    public Boj(Hrac hrac) {
+        this.hrac = hrac;
+    }
 
     @Override
     public String execute() {
-        System.out.println("zacina boj!");
-        nepritelSila= rd.nextInt(4+8);
-        int hraczivoty= hrac.getZivoty();
-        nepritelZivoty=rd.nextInt(31)+40;
+        Nepritel nepritel = new Nepritel("Lesní bestie", 30, 10);
+        System.out.println("Narazil jsi na " + nepritel.getJmeno() + "!");
 
-        while(hrac.getZivoty()>0 && nepritelZivoty>0){
-            int hracUtok=hrac.getSila()*rd.nextInt(5);
-            nepritelZivoty-=hracUtok;
-            System.out.println("uderil si nepritele za: "+ hracUtok + " zivotu");
-            if (nepritelZivoty<=0){
-                System.out.println("zabil si nepritele!");
+        while (hrac.getZivoty() > 0 && nepritel.getZivoty() > 0) {
+            System.out.println("Co chceš dělat? (útok/útěk)");
+            System.out.println("> ");
+            String akce = sc.nextLine();
+
+            if (akce.equals("útok")) {
+                hrac.utok(nepritel);
+                if (nepritel.getZivoty() > 0) {
+                    nepritel.utok(hrac);
+                }
+            } else if (akce.equals("útěk")) {
+                System.out.println("Utekl jsi z boje!");
+                return "Utekl jsi";
+            } else if (akce.isEmpty()) {
+                return "špatnej příkaz";
             }
-            int nepritelUtok=rd.nextInt(4)+8;
-            hraczivoty-=nepritelUtok;
-            System.out.println("nepritel uderil za: " + nepritelUtok + " zivotu");
 
-            if (hraczivoty>=0){
-                System.out.println("jses mrtvy");
+            if (hrac.getZivoty() <= 0) {
+                System.out.println("Zemřel jsi! Konec hry.");
+                System.exit(0);
+            }
+
+            if (nepritel.getZivoty() <= 0) {
+                System.out.println("Porazil jsi nepřítele!");
+                return "Vyhrál jsi boj";
             }
         }
-
-
-
-        return "chyba v boji";
+        return "Boj skončil";
     }
 
     @Override
