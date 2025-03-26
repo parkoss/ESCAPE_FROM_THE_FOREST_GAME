@@ -6,6 +6,11 @@ public class Staty implements Command {
         this.hrac = hrac;
     }
 
+    /**
+     * Zobrazuje statistiky hráče.
+     *
+     * @return Informace o statistikách hráče.
+     */
     @Override
     public String execute() {
         System.out.println("tve staty:");

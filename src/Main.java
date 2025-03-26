@@ -7,5 +7,8 @@ public class Main {
         Boj boj=new Boj(hrac);
         commands.start(mapaLesa,hrac,lokace);
 
+
+
+
     }
 }

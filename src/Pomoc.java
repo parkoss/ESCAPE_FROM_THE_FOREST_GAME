@@ -1,5 +1,10 @@
 public class Pomoc implements Command{
 
+    /**
+     * Vypisuje příkazy pro hráče, které může použít
+     *
+     * @return zpráva pro hráče
+     */
     @Override
     public String execute() {
         System.out.println("---------------------------------");

@@ -12,6 +12,12 @@ public class MapaLesa {
     private ArrayList<String> infoOLokacich = new ArrayList<>();
     Lokace lokace;
 
+
+    /**
+     * Načítá mapu ze souboru map.txt
+     *
+     * @return true, pokud se mapa načetla úspěšně, jinak false.
+     */
     public boolean nactiMapu() {
         try (BufferedReader br = new BufferedReader(new FileReader("map.txt"))) {
             String line;
@@ -37,6 +43,9 @@ public class MapaLesa {
 
     }
 
+    /**
+     * Zobrazuje možné lokace, do kterých se hráč může přesunout.
+     */
     public void zobrazMozneLokace() {
         ArrayList<String> unikatniLokace = new ArrayList<>();
 
@@ -60,6 +69,11 @@ public class MapaLesa {
     }
 
 
+    /**
+     * Načítá předměty do aktuální lokace ze souboru itemy.txt.
+     *
+     * @return Název předmětu, pokud se načetl, jinak null.
+     */
     public String nactiItemy() {
         try (BufferedReader br = new BufferedReader(new FileReader("itemy.txt"))) {
             String line;
@@ -88,6 +102,9 @@ public class MapaLesa {
         }
     }
 
+    /**
+     * Zobrazuje předměty v aktuální lokaci.
+     */
     public void zobrazItemyVaktualniLokaci() {
         for (Lokace lokace : vsechnyLokace) {
             if (lokace.getNazev().equals(momentalniLokace)) {
@@ -102,6 +119,11 @@ public class MapaLesa {
         }
     }
 
+    /**
+     * Získává předměty v aktuální lokaci.
+     *
+     * @return Seznam předmětů v aktuální lokaci.
+     */
     public ArrayList<String> getItemyVAktualniLokaci() {
         for (Lokace lokace : vsechnyLokace) {
             if (lokace.getNazev().equals(momentalniLokace)) {
@@ -111,6 +133,11 @@ public class MapaLesa {
         return new ArrayList<>();
     }
 
+    /**
+     * Odstraňuje předmět z aktuální lokace.
+     *
+     * @param itemNazev Název předmětu, který se má odstranit.
+     */
     public void odeberItemZLokace(String itemNazev) {
         for (Lokace lokace : vsechnyLokace) {
             if (lokace.getNazev().equals(momentalniLokace)) {
@@ -120,6 +147,12 @@ public class MapaLesa {
         }
     }
 
+    /**
+     * Hledá lokaci podle názvu.
+     *
+     * @param name Název hledané lokace.
+     * @return Lokace, pokud byla nalezena, jinak null.
+     */
     public Lokace najdiLokaci(String name) {
         for (Lokace l : vsechnyLokace) {
             if (l.getNazev().equals(name)) {

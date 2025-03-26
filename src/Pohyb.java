@@ -20,6 +20,11 @@ public class Pohyb implements Command{
 
 
 
+    /**
+     * Provádí pohyb hráče do zvolené lokace.
+     *
+     * @return Výsledek pohybu
+     */
     @Override
     public String execute() {
         mapaLesa.zobrazMozneLokace();
@@ -51,17 +56,18 @@ public class Pohyb implements Command{
 
                     if (!potrebnyItem.equals("null") && !inventar.getBatoh().contains(potrebnyItem)) {
                         System.out.println("Pro vstup do lokace '" + input + "' potřebuješ: " + potrebnyItem);
-                        return "Nemáš požadovaný předmět.";
+                        System.out.println("Nemáš požadovaný předmět.");
+                        return "zustal jsi v "+ mapaLesa.getMomentalniLokace();
                     }
 
 
 
                     int sance= rd.nextInt(100);
-                    if (sance<30){
+                    if (sance<15){
                         System.out.println("narazil jsi na nepřítele!");
                         Boj boj=new Boj(hrac);
                         boj.execute();
-                    } else if (sance<90) {
+                    } else if (sance<25) {
                         System.out.println("narazil jsi na truhlu");
                         Truhla truhla=new Truhla();
                         truhla.najdiPredmet(hrac);

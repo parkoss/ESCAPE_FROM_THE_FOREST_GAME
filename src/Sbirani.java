@@ -16,6 +16,11 @@ public class Sbirani implements Command {
         this.hrac=hrac;
     }
 
+    /**
+     * Provádí akci sbírání předmětu z aktuální lokace.
+     *
+     * @return Výsledek sbírání.
+     */
     @Override
     public String execute() {
         ArrayList<String> dostupneItemy = mapaLesa.getItemyVAktualniLokaci();

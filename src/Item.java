@@ -24,4 +24,9 @@ public class Item{
         return nazev;
     }
 
+    @Override
+    public String toString() {
+        return nazev;
+
+    }
 }
