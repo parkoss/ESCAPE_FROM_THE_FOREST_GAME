@@ -86,6 +86,11 @@ public class Pohyb implements Command{
                         System.exit(0);
                     }
 
+                    if (aktualniLokace.getNazev().equals("chram")){
+                        Rebus rebus=new Rebus();
+                        rebus.execute();
+                    }
+
 
 
                         return "Jsi nyní v " + input;
