@@ -3,6 +3,11 @@ import java.util.Scanner;
 public class Rebus implements Command{
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Spouští rébus, kde hráč musí udělat správnou kombinanci
+     *
+     * @return Konec hry
+     */
     @Override
     public String execute() {
         System.out.println("Narazil jsi na rébus.");
