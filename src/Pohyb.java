@@ -80,18 +80,10 @@ public class Pohyb implements Command{
                     mapaLesa.zobrazItemyVaktualniLokaci();
 
 
-
-                    if (aktualniLokace.getNazev().equals("brana")){
-                        System.out.println("konec hry");
-                        System.exit(0);
-                    }
-
-                    if (aktualniLokace.getNazev().equals("chram")){
-                        Rebus rebus=new Rebus();
+                    if (aktualniLokace.getNazev().equals("chram") ) {
+                        Rebus rebus = new Rebus();
                         rebus.execute();
                     }
-
-
 
                         return "Jsi nyní v " + input;
 

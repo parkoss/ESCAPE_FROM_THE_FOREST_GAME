@@ -35,7 +35,7 @@ public class Sbirani implements Command {
         if (dostupneItemy.contains(input)) {
             inventar.pridejItem(input);
             mapaLesa.odeberItemZLokace(input);
-            hrac.vstupDoBrany();
+            hrac.vstupDoChramu();
             return "Sebral jsi " + input;
         }
         return "Tento předmět zde není.";

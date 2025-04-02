@@ -2,6 +2,7 @@ public class Hrac {
     private int zivoty;
     private int sila;
     private int maxZivoty=50;
+
     Inventar inventar;
 
     public Hrac(int zivoty, int sila) {
@@ -14,7 +15,7 @@ public class Hrac {
     /**
      * Kontroluje pokud ma hrac itemy pro vstup do finalni lokace
      */
-    public void vstupDoBrany(){
+    public void vstupDoChramu(){
         if (inventar.getBatoh().contains("elfiHulka")&&inventar.getBatoh().contains("mapaKChramu")){
             inventar.pridejItem("vylepsenaMapaKChramu");
         }
@@ -75,4 +76,5 @@ public class Hrac {
     public int getMaxZivoty() {
         return maxZivoty;
     }
+
 }
